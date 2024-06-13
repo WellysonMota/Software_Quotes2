@@ -7,6 +7,7 @@ import clientes
 import dolarnow
 import button_Controller
 import setDatabase_view
+import add_product_manager
 
 data = datetime.date.today()
 data_formatada = data.strftime("%d%m%Y")
@@ -103,30 +104,6 @@ lista_manager = ["Welly", "Niall", "Gabi", ]
 combobox_manager = ttk.Combobox(right_pane, values=lista_manager)
 combobox_manager.grid(row=10, column=0, padx=0, pady=0)
 
-label = tk.Label(right_pane, text="")
-label.grid(row=11, column=0, padx=0, pady=0)
-label = tk.Label(right_pane, text="SELECIONE OS DADOS DO CLIENTE")
-label.grid(row=12, column=0, padx=0, pady=0)
-
-button = tk.Button(right_pane, text="Buscar Cliente", command="")
-button.grid(row=13, column=0, padx=50, pady=10, sticky="w")
-
-label_nomecliente = tk.Label(right_pane, text="Digite o nome do cliente:")
-label_nomecliente.grid(row=14, column=0, padx=0, pady=0)
-cliente = tk.Entry(right_pane)  # Campo para digitar a entrada
-cliente.grid(row=15, column=0, padx=0, pady=0)
-
-label = tk.Label(right_pane, text="Digite o nome da Empresa")
-label.grid(row=16, column=0, padx=0, pady=0)
-empresa = tk.Entry(right_pane)  # Campo para digitar a entrada
-empresa.grid(row=17, column=0, padx=0, pady=0)
-
-label = tk.Label(right_pane, text="Finalidade")
-label.grid(row=18, column=0, padx=0, pady=0)
-lista_termo = ["Usuario final", "Revenda", "Industrialização", ]
-combobox_termo = ttk.Combobox(right_pane, values=lista_termo)
-combobox_termo.grid(row=19, column=0, padx=0, pady=0)
-
 label = tk.Label(right_pane, text="SELECIONE OS TERMOS DE PAGAMENTO:")
 label.grid(row=0, column=1, padx=0, pady=0)
 
@@ -143,6 +120,32 @@ lista_frete = ["Incluso", "Não Incluso", "Sedex", "Transportadora", "Motoboy", 
                "Fedex Priority", "Fedex Overnight", ]
 combobox_frete = ttk.Combobox(right_pane, values=lista_frete)
 combobox_frete.grid(row=4, column=1, padx=0, pady=0)
+
+
+label = tk.Label(right_pane, text="")
+label.grid(row=5, column=1, padx=0, pady=0)
+label = tk.Label(right_pane, text="SELECIONE OS DADOS DO CLIENTE")
+label.grid(row=6, column=1, padx=0, pady=0)
+
+button_customer = tk.Button(right_pane, text="Buscar Cliente", command=lambda: button_Controller.buttonCustomer())
+button_customer.grid(row=7, column=1, padx=50, pady=10, sticky="w")
+
+label_nomecliente = tk.Label(right_pane, text="Digite o nome do cliente:")
+label_nomecliente.grid(row=8, column=1, padx=0, pady=0)
+cliente = tk.Entry(right_pane)  # Campo para digitar a entrada
+cliente.grid(row=9, column=1, padx=0, pady=0)
+
+label = tk.Label(right_pane, text="Digite o nome da Empresa")
+label.grid(row=10, column=1, padx=0, pady=0)
+empresa = tk.Entry(right_pane)  # Campo para digitar a entrada
+empresa.grid(row=11, column=1, padx=0, pady=0)
+
+label = tk.Label(right_pane, text="Finalidade")
+label.grid(row=12, column=1, padx=0, pady=0)
+lista_termo = ["Usuario final", "Revenda", "Industrialização", ]
+combobox_termo = ttk.Combobox(right_pane, values=lista_termo)
+combobox_termo.grid(row=13, column=1, padx=0, pady=0)
+
 
 # ====Configurações do PAINEL ESQUERDO (LEFT PANE) =======================================================================================
 
@@ -171,11 +174,18 @@ button.grid(row=6, column=0, padx=0, pady=5, sticky="w")
                    #command=lambda: pdf_generator.PDF_Generator(cliente.get(), empresa.get(), combobox_local.get(),
                                                                #combobox_moeda.get(), combobox_inco.get(),
                                                                #combobox_termo.get(), combobox_frete.get()))
+
+                                                               #combobox_termo.get(), combobox_frete.get()))
+button = tk.Button(right_pane, text="Add new Product",
+                   command=lambda:add_product_manager.root.mainloop())
+button.grid(row=20, column=0, padx=0, pady=0)
+
+
 button = tk.Button(right_pane, text="Gerar PDF",
                    command=lambda:button_Controller.gerarQuote_Action(combobox_local.get(), combobox_language.get(),'BRL', data, 'Wellyson', 'Compwire',
                   cliente.get(), 'System Integrator', 'Brasil', 'Santa Catarina', 'Florianapolis','NET30',
                   'Sedex', 17800))
 
-button.grid(row=20, column=4, padx=0, pady=0)
+button.grid(row=21, column=3, padx=0, pady=0)
 
 janela.mainloop()

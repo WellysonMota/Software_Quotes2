@@ -1,5 +1,6 @@
 import pdf_generator
 import db_manager
+import clientes
 
 
 def gerarQuote_Action (origin, language, currency, date, accountmanager, companyname, contactname, companytype, companycountry, companystate,
@@ -14,3 +15,7 @@ def gerarQuote_Action (origin, language, currency, date, accountmanager, company
 
     pdf_generator.PDF_Generator(origin, language, currency, date, accountmanager, companyname, contactname, companytype, companycountry, companystate,
                               companycity, paymenterm, freight, totalamount)
+
+
+def buttonCustomer ():
+    clientes.ClientesJanela()
