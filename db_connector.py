@@ -6,7 +6,7 @@ def criar_conexao():
         conexao = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='199329',
+            password='',
             database='mydb'
         )
         if conexao.is_connected():

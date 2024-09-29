@@ -1,0 +1,39 @@
+MySQL Notes
+
+>Checking MySQL Service Status
+sudo systemctl status mysql
+
+> Checking MySQL Server Uptime
+mysqladmin version -u root -p
+
+> Monitoring MySQL Performance
+mysqladmin status -u root -p
+
+>Iniciar MySQL
+ sudo systemctl start mysql.service
+ 
+ >Parar MySQL
+  sudo systemctl stop mysql.service
+ 
+ 
+ ============= Caso o MYSQL esteja negando o acesso ===========================================
+ 
+ Via terminal:
+
+sudo mysql -u root
+
+$ sudo mysql -u root
+
+mysql> USE mysql;
+mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+mysql> FLUSH PRIVILEGES;
+mysql> exit;
+
+$ sudo service mysql restart
+
+ ============= setar nova senha root ===========================================
+
+sudo mysql -u root
+Senha MYSQL Learning_platform
+User: welly
+Senha: 199329

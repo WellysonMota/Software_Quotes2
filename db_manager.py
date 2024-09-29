@@ -35,7 +35,7 @@ def inserir_quote(origin: object, language: object, currency: object, date: obje
         print(f"Quote adicionada com sucesso. ID: {cursor.lastrowid}")
 
     except Error as e:
-        print(f"Erro ao inserir quote: {e}")
+        print(f"Erro ao inserir quote: {e}, conexão com banco nao estabalecida")
     finally:
         if conexao.is_connected():
             cursor.close()

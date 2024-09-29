@@ -1,4 +1,5 @@
 import tkinter as tk
+
 from tkinter import messagebox
 from tkinter import ttk
 import datetime
@@ -11,6 +12,7 @@ import add_product_manager
 
 data = datetime.date.today()
 data_formatada = data.strftime("%d%m%Y")
+cabecalho_teste = "Item       |  Produto          |       Part Number         |                                              Descrição                                                |          Quantidade           |       Valor Unitario      |        Valor Total        |"
 
 def call_alert(mensagem):
     messagebox.showinfo("Alerta", f"{mensagem}")
@@ -34,8 +36,8 @@ def on_button_click():
 # Crie uma janela principal
 janela = tk.Tk()
 janela.title("Gerador de Cotações - EPS")
-largura = 1080
-altura = 840
+largura = 960
+altura = 680
 x = (janela.winfo_screenwidth() - largura) // 2
 y = (janela.winfo_screenheight() - altura) // 2
 janela.geometry(f"{largura}x{altura}+{x}+{y}")
@@ -52,8 +54,36 @@ main.pack(side="top", fill="both", expand=True)
 
 left_pane = tk.Frame(main, background="#b2bbc2", width=100)
 right_pane = tk.Frame(main, background="#f0f5f5", width=200)
+
 main.add(left_pane)
 main.add(right_pane)
+
+# Canvas para exibir o conteúdo rolável
+data_show = tk.Canvas(right_pane, background="white")
+data_show.place(x=0, y=440, relwidth=0.97, height=290)  # Ajustar a largura para deixar espaço para a Scrollbar
+
+# Scrollbar adicionada no contêiner do Canvas.
+scrollbar = tk.Scrollbar(right_pane, orient="vertical", command=data_show.yview)
+scrollbar.place(x=1240, y=440, height=290)  # Posicionar a Scrollbar ao lado do Canvas
+
+# Frame interno para adicionar widgets dentro do Canvas
+scrollable_frame = tk.Frame(data_show, background="lightblue")
+
+# Adicionar o frame interno ao Canvas
+data_show.create_window((0, 0), window=scrollable_frame, anchor="nw")
+
+# Configurar a rolagem do Canvas com o frame interno
+scrollable_frame.bind("<Configure>", lambda e: data_show.configure(scrollregion=data_show.bbox("all")))
+
+# Configurar a rolagem do Canvas para interagir com a Scrollbar
+data_show.configure(yscrollcommand=scrollbar.set)
+
+# Adicionar alguns widgets no frame interno para simular o conteúdo rolável
+
+tk.Label(scrollable_frame, text=f"{cabecalho_teste}", bg="lightblue").grid(row=1, column=1)
+
+
+
 
 # ====Configurações da Barra de Superior=================================================================================================
 # Use o gerenciador de geometria grid para alinhar os botões à esquerda do toolbar
@@ -177,7 +207,7 @@ button.grid(row=6, column=0, padx=0, pady=5, sticky="w")
 
                                                                #combobox_termo.get(), combobox_frete.get()))
 button = tk.Button(right_pane, text="Add new Product",
-                   command=lambda:add_product_manager.root.mainloop())
+                   command=lambda:add_product_manager.abrir_tela())
 button.grid(row=20, column=0, padx=0, pady=0)
 
 
@@ -186,6 +216,6 @@ button = tk.Button(right_pane, text="Gerar PDF",
                   cliente.get(), 'System Integrator', 'Brasil', 'Santa Catarina', 'Florianapolis','NET30',
                   'Sedex', 17800))
 
-button.grid(row=21, column=3, padx=0, pady=0)
+button.grid(row=21, column=2, padx=0, pady=10)
 
 janela.mainloop()
