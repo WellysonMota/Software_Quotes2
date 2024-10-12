@@ -87,6 +87,7 @@ tk.Label(scrollable_frame, text=f"{cabecalho_teste}", bg="lightblue").grid(row=1
 
 # ====Configurações da Barra de Superior=================================================================================================
 # Use o gerenciador de geometria grid para alinhar os botões à esquerda do toolbar
+
 button = tk.Button(toolbar, text="Carregar Cotação", command="")
 button.grid(row=0, column=0, padx=0, pady=0, sticky="w")
 
@@ -96,7 +97,7 @@ button.grid(row=0, column=1, padx=0, pady=0, sticky="w")
 button_2 = tk.Button(toolbar, text="About", command=lambda: about.about())
 button_2.grid(row=0, column=2, padx=0, pady=0, sticky="w")
 
-# ====Configurações da Barra Infrerior (Status Bar) =======================================================================================
+# ====Configurações da Barra Inferior (Status Bar) =======================================================================================
 button = tk.Button(statusbar, text="Dolar Now", command=lambda: on_button_click())
 button.grid(row=0, column=0, padx=0, pady=0, sticky="w")
 
@@ -206,8 +207,8 @@ button.grid(row=6, column=0, padx=0, pady=5, sticky="w")
                                                                #combobox_termo.get(), combobox_frete.get()))
 
                                                                #combobox_termo.get(), combobox_frete.get()))
-button = tk.Button(right_pane, text="Add new Product",
-                   command=lambda:add_product_manager.abrir_tela())
+button = tk.Button(right_pane, text="Adicionar Produto",
+                   command=lambda:add_product_manager.open_product_search())
 button.grid(row=20, column=0, padx=0, pady=0)
 
 
